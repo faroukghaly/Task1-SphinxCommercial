@@ -1,0 +1,33 @@
+﻿@page "{id:int}"
+@model Task1SphinxCommercial.UI.Pages.ClientProducts.EditClientProductsModel
+
+<h2>Edit Client Product</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="EditClientProducts.ClientProductId" />
+
+    <div>
+        <label asp-for="EditClientProducts.License"></label>
+        <input asp-for="EditClientProducts.License" class="form-control" />
+        <span asp-validation-for="EditClientProducts.License" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="EditClientProducts.StartDate"></label>
+        <input asp-for="EditClientProducts.StartDate" type="date" class="form-control" />
+        <span asp-validation-for="EditClientProducts.StartDate" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="EditClientProducts.EndDate"></label>
+        <input asp-for="EditClientProducts.EndDate" type="date" class="form-control" />
+        <span asp-validation-for="EditClientProducts.EndDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-page="/Clients/ClientDetails" asp-route-id="@Model.EditClientProducts.ClientId" class="btn btn-secondary">Cancel</a>
+</form>
+
+
+
+
+

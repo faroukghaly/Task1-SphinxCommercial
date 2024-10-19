@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model Task1SphinxCommercial.UI.Pages.Products.ProductDetailsModel
+
+<h2>Product Details</h2>
+
+<div>
+    <label>Name:</label>
+    <span>@Model.ProductDetails.Name</span>
+</div>
+
+<div>
+    <label>Description:</label>
+    <span>@Model.ProductDetails.Description</span>
+</div>
+
+<div>
+    <label>Active:</label>
+    <span>@(Model.ProductDetails.IsActive ? "Yes" : "No")</span>
+</div>
+<br />
+<a href="/Products/EditProducts/@Model.ProductDetails.ProductId" class="btn btn-warning">Edit</a>
+<a asp-page="/Products/ListProducts"  class="btn btn-secondary">Back To List</a>
+
+

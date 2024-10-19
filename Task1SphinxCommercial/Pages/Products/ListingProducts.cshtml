@@ -1,0 +1,43 @@
+﻿@using X.PagedList.Extensions;
+@model IPagedList<Task1SphinxCommercial.BL.Entities.Product>
+
+<h2>Products</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>
+                    <a class="btn btn-primary" href="/Products/Edit?id=@product.ProductID">Edit</a>
+                    <a class="btn btn-danger" href="/Products/Delete?id=@product.ProductID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Page("ListingProducts", new { PageNumber = page }),
+            new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = true,
+        DisplayLinkToLastPage = true,
+        DisplayLinkToPreviousPage = true,
+        DisplayLinkToNextPage = true,
+        DisplayEllipses = true,
+        EllipsesFormat = "...",
+        LinkToFirstPageFormat = "First",
+        LinkToPreviousPageFormat = "Previous",
+        LinkToNextPageFormat = "Next",
+        LinkToLastPageFormat = "Last"
+    });
+</div>

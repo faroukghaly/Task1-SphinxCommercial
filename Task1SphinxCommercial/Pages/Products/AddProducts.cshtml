@@ -1,0 +1,27 @@
+﻿@page
+@model Task1SphinxCommercial.UI.Pages.Products.AddProductsModel
+
+<h2>Add Product</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="NewProduct.Name"></label>
+        <input asp-for="NewProduct.Name" class="form-control" />
+        <span asp-validation-for="NewProduct.Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="NewProduct.Description"></label>
+        <input asp-for="NewProduct.Description" class="form-control" />
+        <span asp-validation-for="NewProduct.Description" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="NewProduct.IsActive"></label>
+        <input type="checkbox" asp-for="NewProduct.IsActive" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Product</button>
+    <a asp-page="/Products/ListProducts" class="btn btn-secondary">Cancel</a>
+</form>
+

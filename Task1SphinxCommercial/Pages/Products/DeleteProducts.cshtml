@@ -1,0 +1,39 @@
+﻿@page
+@model Task1SphinxCommercial.UI.Pages.Products.DeleteProductsModel
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+<h2>Delete Product</h2>
+<h2  class="text-danger">@TempData["error"] </h2>
+
+<div>
+    <h4>Are you sure you want to delete this product?</h4>
+    <div>
+        <label>Product Name:</label>
+        <span>@Model.ProductDetails.Name</span>
+    </div>
+    <div>
+        <label>Description:</label>
+        <span>@Model.ProductDetails.Description</span>
+    </div>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="ProductDetails.ProductId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="/Products/ListProducts" class="btn btn-secondary">Cancel</a>
+</form>
+
+@if (ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+

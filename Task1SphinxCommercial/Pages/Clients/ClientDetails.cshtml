@@ -1,0 +1,59 @@
+﻿@page "{id:int}"
+@model Task1SphinxCommercial.UI.Pages.Clients.ClientDetailsModel
+
+<h2>Client Details</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>State</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.ClientDetails.Code</td>
+            <td>@Model.ClientDetails.ClientId</td>
+            <td>@Model.ClientDetails.Name</td>
+            <td>@Model.ClientDetails.Class</td>
+            <td>@Model.ClientDetails.State</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Client's Related Products</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>License</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ClientProducts != null && Model.ClientProducts.Any())
+        {
+            foreach (var clientProduct in Model.ClientProducts)
+            {
+                <tr>
+                    <td>@clientProduct.Product.Name</td>
+                    <td>@clientProduct.License</td>
+                    <td>@clientProduct.StartDate.ToShortDateString()</td>
+                    <td>@(clientProduct.EndDate?.ToShortDateString() ?? "N/A")</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No products found for this client.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="/Clients/ListClients" class="btn btn-secondary">Back To Clients List</a>
+
+

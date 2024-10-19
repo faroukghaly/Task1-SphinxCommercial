@@ -1,0 +1,61 @@
+﻿@page
+@model Task1SphinxCommercial.UI.Pages.ClientProducts.AddClientProductsModel
+
+<h2>Add Client Product</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="NewClientProduct.ClientId"></label>
+        <select asp-for="NewClientProduct.ClientId" class="form-control">
+            <option value="">Select Client</option>
+            @foreach (var client in Model.Clients)
+            {
+                <option value="@client.ClientId">@client.Name</option>
+            }
+        </select>
+        <span asp-validation-for="NewClientProduct.ClientId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="NewClientProduct.ProductId"></label>
+        <select asp-for="NewClientProduct.ProductId" class="form-control">
+            <option value="">Select Product</option>
+            @foreach (var product in Model.Products)
+            {
+                <option value="@product.ProductId">@product.Name</option>
+            }
+        </select>
+        <span asp-validation-for="NewClientProduct.ProductId" class="text-danger"></span>
+    </div>
+
+    <div >
+        <label asp-for="NewClientProduct.License"></label>
+        <input asp-for="NewClientProduct.License" class="form-control" />
+        <span asp-validation-for="NewClientProduct.License" class="text-danger"></span>
+    </div>
+
+    <div >
+        <label asp-for="NewClientProduct.StartDate"></label>
+        <input asp-for="NewClientProduct.StartDate" type="date" class="form-control" />
+        <span asp-validation-for="NewClientProduct.StartDate" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="NewClientProduct.EndDate"></label>
+        <input asp-for="NewClientProduct.EndDate" type="date" class="form-control" />
+        <span asp-validation-for="NewClientProduct.EndDate" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Add Client Product</button>
+    <a asp-page="/ClientProducts/ListClientProducts" class="btn btn-secondary">Cancel</a>
+</form>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger mt-2">
+        @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}

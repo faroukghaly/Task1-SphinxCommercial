@@ -1,0 +1,36 @@
+﻿@page "{id:int}"
+@model Task1SphinxCommercial.UI.Pages.ClientProducts.DeleteClientProductsModel
+
+@{
+    ViewData["Title"] = "Delete Client Product";
+}
+
+<h2>Delete Client Product</h2>
+
+@if (Model.ClientProduct == null)
+{
+    <div class="alert alert-danger">
+        The product you are trying to delete does not exist.
+    </div>
+    <a asp-page="/Clients/ClientDetails" asp-route-id="@Model.ClientId" class="btn btn-secondary">Back to Client Details</a>
+}
+else
+{
+    <div>
+        <h4>Are you sure you want to delete this product?</h4>
+        <dl class="row">
+            <dt class="col-sm-2">License</dt>
+            <dd class="col-sm-10">@Model.ClientProduct.License</dd>
+            <dt class="col-sm-2">Start Date</dt>
+            <dd class="col-sm-10">@Model.ClientProduct.StartDate.ToShortDateString()</dd>
+            <dt class="col-sm-2">End Date</dt>
+            <dd class="col-sm-10">@Model.ClientProduct.EndDate?.ToShortDateString()</dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="ClientProduct.ClientProductId" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-page="/ClientProducts/ListClientProducts" asp-route-id="@Model.ClientId" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+}
